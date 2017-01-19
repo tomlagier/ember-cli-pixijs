@@ -27,24 +27,24 @@ module.exports = {
 
   treeForVendor: function(vendorTree) {
     var trees = [];
-    
+
     if (vendorTree) {
       trees.push(vendorTree);
     }
-    
-    var pixiPath = path.join(path.dirname(require.resolve('pixi.js')), '..', 'bin');
+
+    var pixiPath = path.join(path.dirname(require.resolve('pixi.js')), '..', 'dist');
     trees.push(new Funnel(pixiPath, {
       destDir: 'pixi.js',
       include: [new RegExp(/\.(js|map)$/)]
     }));
-    
+
     var es5ShimPath = path.dirname(require.resolve('es5-shim'));
     trees.push(new Funnel(es5ShimPath, {
       destDir: 'es5-shim',
       include: [new RegExp(/\.(js|map)$/)],
       exclude: ['tests/**/*']
     }));
-    
+
     return mergeTrees(trees);
   }
 };
