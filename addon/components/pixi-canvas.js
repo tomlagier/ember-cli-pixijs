@@ -16,7 +16,7 @@ export default Component.extend({
 
   pixiRenderer: computed('width', 'height', function() {
     let { width, height } = this.getProperties('width', 'height');
-    return new PIXI.CanvasRenderer(width, height, {transparent: true, antialias: true});
+    return new PIXI.autoDetectRenderer(width, height, {transparent: true, antialias: true, resolution: 2});
   }),
 
   willUpdate() {
